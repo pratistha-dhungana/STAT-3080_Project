@@ -1,0 +1,23 @@
+---
+title: "Unemployment patterns in the US"
+author: "Pratistha Dhungana, Marwa[]"
+date: "11/04/25"
+output: html_notebook
+---
+
+## Introduction
+
+    Unemployment is one of the most widely discussed indicators of a country’s economic health and labor market efficiency. It reflects a country’s economic performance, stability, and the well-being of households, communities, and future workforce participants. In recent years, the U.S. labor market has undergone substantial changes as it continues to recover from the pandemic’s disruption and adjust to new patterns in remote work, automation, and sectoral demand. Understanding unemployment patterns across different demographic and educational groups provides valuable insight into how opportunities are distributed and which populations face persistent challenges in the job market.
+    This research focuses on unemployment trends in the United States between 2020 and 2024, with particular attention to how education and gender influence employment outcomes. These factors are not only central to national labor policies but also directly relevant to college students entering the workforce for the first time. As many students navigate internships, job applications, and career planning, examining such patterns can offer a perspective on how education and demographic characteristics shape job prospects. Specifically, this paper investigates the following questions:
+    
+    **(1) Did college graduates have a lower average unemployment rate than non-college graduates betweeen 2020 and 2024?**
+    **(2) Was the average unemployment rate for females higher than that for males between 2020 and 2024?**
+
+
+
+
+```{r}
+
+
+```
+
