@@ -1,6 +1,6 @@
 ---
 title: "Unemployment patterns in the US"
-author: "Pratistha Dhungana, Marwa[]"
+author: "Pratistha Dhungana, Marwa Zaki"
 date: "11/04/25"
 output: html_notebook
 ---
