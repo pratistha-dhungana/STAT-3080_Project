@@ -40,6 +40,36 @@ non.college$Month <- month.name[as.numeric(substr(non.college$Month, 6,7))]
 
 # Merging data
 unemployment.data <- merge(college, non.college, by="Month")
+unemployment.data$Month <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug",
+                             "Sep", "Oct", "Nov", "Dec")
+
+
+# Line Plot of Unemployment
+
+ggplot(unemployment.data, aes(x=Month)) +
+  geom_line(aes(y=UR_College, color="College", group=1)) +
+  geom_line(aes(y=UR_NonCollege, color = "Non-College", group=1)) + 
+  geom_point(aes(y=UR_College, color="College")) +
+  geom_point(aes(y=UR_NonCollege, color = "Non-College")) + 
+  labs(
+    title = "Unemployment Rates in 2024: College vs. Non-College Graduates", 
+    x = "Month",
+    y = "Unemployment Rate (%)", 
+    color = "Group") + 
+  theme_minimal()
+
+# Bar Graph
+ggplot(unemployment.data, aes(x=Month)) + 
+  geom_col(aes(y=UR_College, fill = "College"), position = "dodge") + 
+  geom_col(aes(y=UR_NonCollege, fill = "Non-College"), position = "dodge") + 
+  geom_text(aes(y=UR_College, label = UR_College), vjust = -0.5, color="black") + 
+  geom_text(aes(y=UR_NonCollege, label = UR_NonCollege), vjust = -0.5, color="black") + 
+  labs(
+    title = "Unemployment Rates in 2024 with Numeric Values", 
+    x = "Month",
+    y = "Unemployment Rate (%)", 
+    fill = "Group") + 
+  theme_minimal()
 
 ```
 
