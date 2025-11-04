@@ -72,4 +72,17 @@ ggplot(unemployment.data, aes(x=Month)) +
   theme_minimal()
 
 ```
+## Data Appendix
+
+```{r}
+head(unemployment.data, 12)
+```
+
+
+## References 
+
+- U.S. Bureau of Labor Statistics. *Labor Force Statistics from the Current Population Survey.* https://www.bls.gov/cps/  
+- Federal Reserve Bank of St. Louis. *FRED Economic Data.* Series: LNU04027660, CGBD2024. https://fred.stlouisfed.org/  
+- U.S. Census Bureau. *Technical Documentation for the Current Population Survey (CPS).* 
+
 
