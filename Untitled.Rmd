@@ -26,7 +26,20 @@ output: html_notebook
 
 
 ```{r}
+# Loading and Renaming data sets
+library(tidyverse)
+college<-read.csv("college.1.csv")
+non.college <- read.csv("highschool.csv")
 
+colnames(college) <- c("Month", "UR_College")
+colnames(non.college) <- c("Month", "UR_NonCollege")
+
+# Changing the months column to display month names
+college$Month <- month.name[as.numeric(substr(college$Month, 6,7))]
+non.college$Month <- month.name[as.numeric(substr(non.college$Month, 6,7))]
+
+# Merging data
+unemployment.data <- merge(college, non.college, by="Month")
 
 ```
 
