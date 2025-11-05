@@ -135,6 +135,8 @@ In the observed 2024 unemployment data, college graduates experienced higher and
      
 \newpage
 
+#### Link to Repository: https://github.com/pratistha-dhungana/STAT-3080_Project.git
+
 ## Data Appendix
 
 ```{r}
