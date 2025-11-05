@@ -7,10 +7,10 @@ output: html_notebook
 
 ## Introduction
 
-    Unemployment is one of the most widely discussed indicators of a country’s economic health and labor market efficiency. It reflects a country’s economic performance, stability, and the well-being of households, communities, and future workforce participants. In recent years, the U.S. labor market has undergone substantial changes as it continues to recover from the pandemic’s disruption and adjust to new patterns in remote work, automation, and sectoral demand. Understanding unemployment patterns across different demographic and educational groups provides valuable insight into how opportunities are distributed and which populations face persistent challenges in the job market.
-    This research focuses on unemployment trends in the United States between 2020 and 2024, with particular attention to how education and gender influence employment outcomes. These factors are not only central to national labor policies but also directly relevant to college students entering the workforce for the first time. As many students navigate internships, job applications, and career planning, examining such patterns can offer a perspective on how education and demographic characteristics shape job prospects. Specifically, this paper investigates the following question:
-    
-    **(1) Did college graduates have a lower average unemployment rate than non-college graduates betweeen 2020 and 2024?**
+  Unemployment is one of the most widely discussed indicators of a country’s economic health and labor market efficiency. It reflects a country’s economic performance, stability, and the well-being of households, communities, and future workforce participants. In recent years, the U.S. labor market has undergone substantial changes as it continues to recover from the pandemic’s disruption and adjust to new patterns in remote work, automation, and sectoral demand. Understanding unemployment patterns across different demographic and educational groups provides valuable insight into how opportunities are distributed and which populations face persistent challenges in the job market.
+  This research focuses on unemployment trends in the United States between 2020 and 2024, with particular attention to how education and gender influence employment outcomes. These factors are not only central to national labor policies but also directly relevant to college students entering the workforce for the first time. As many students navigate internships, job applications, and career planning, examining such patterns can offer a perspective on how education and demographic characteristics shape job prospects. Specifically, this paper investigates the following question:
+  
+  **(1) Did college graduates have a lower average unemployment rate than non-college graduates betweeen 2020 and 2024?**
 
 ## Data Summary
 
@@ -18,10 +18,6 @@ output: html_notebook
   According to the Labor Force Statistics from the CPS, much of the data collected can often undergo seasonal adjustments to account for fluctuations over the course of year as a result of seasonal events. However, both of the datasets used for this paper have not undergone any form of seasonal adjustments. The data does experience modifications for population control. Specifically, the Census Bureau adjusts the CPS population controls to incorporate the latest information about population change, and these adjustments are incorporated into the CPS estimates for data in January (“Technical Documentation (CPS)”). 
   One of the main potential issues the data could pose is regarding its status as sample data. While it may be designed to be nationally representative, a sample is not a complete count of the U.S. population, meaning it is subject to random variation and sampling error. The impact of this is that reported unemployment rates can differ from the true population value, particularly for small subgroups like education level, which may affect comparison between the two groups. Additionally, there is an issue with how the CPS defines unemployment. According to the BLS, a person who is unemployed is characterized as someone who is jobless, looking for a job, and available for work (U.S. Bureau of Labor Statistics). This definition can exclude a large number of individuals, including discouraged workers who are unemployed but are not actively seeking employment. As a result, the collected unemployment rates may underrepresent the true values for the two groups.
   Despite this, the collected data remains appropriate for answering our outlined research question, largely because the CPS is a major primary source for U.S. labor force statistics. It collects detailed data that distinguishes between the levels of educational attainment (those with a bachelor’s degree or higher vs. those with a high school degree or lower), allowing for a direct comparison of unemployment rates between the two groups. Additionally, because this data is collected monthly, it can successfully break down the single year that the research question focuses on (2024) with by-month data. 
-
-
-
-
 
 
 
@@ -72,6 +68,20 @@ ggplot(unemployment.data, aes(x=Month)) +
   theme_minimal()
 
 ```
+## Numerical summaries 
+
+```{r}
+summary(unemployment.data[,c("UR_College", "UR_NonCollege")])
+```
+
+## Average unemployment by education level
+```{r}
+avg_college <- mean(unemployment.data$UR_College)
+avg_noncollege <- mean(unemployment.data$UR_NonCollege)
+
+avg_college; avg_noncollege     
+```
+
 ## Data Appendix
 
 ```{r}
