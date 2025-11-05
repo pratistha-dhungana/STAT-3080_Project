@@ -9,6 +9,29 @@ header-includes:
 - \onehalfspacing
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+# Loading and Renaming data sets
+library(tidyverse)
+library(kableExtra)
+college<-read.csv("college.1.csv")
+non.college <- read.csv("highschool.csv")
+
+colnames(college) <- c("Month", "UR_College")
+colnames(non.college) <- c("Month", "UR_NonCollege")
+
+# Changing the months column to display month names
+college$Month <- month.name[as.numeric(substr(college$Month, 6,7))]
+non.college$Month <- month.name[as.numeric(substr(non.college$Month, 6,7))]
+
+# Merging data
+unemployment.data <- merge(college, non.college, by="Month")
+unemployment.data$Month <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug",
+                             "Sep", "Oct", "Nov", "Dec")
+```
 
 ## Introduction
 
@@ -31,7 +54,7 @@ library(kableExtra)
 
 # create the data frame
 dd <- data.frame(
-  `Variable Name` = c("Month", "UR_College", "UR_NonCollege"),
+  `Variable Name` = c("Month", "URC", "URNC"),
   Description = c(
     "Calendar month (Jan–Dec, 2024); each row represents one observation.",
     "Monthly unemployment rate for individuals aged 25+ with a bachelor's degree or higher (unemployed ÷ labor force in this group).",
@@ -46,28 +69,13 @@ dd <- data.frame(
 )
 
 # print a simple bordered table
-knitr::kable(dd, caption = "Data Dictionary – Q1") |>
-  kable_styling(bootstrap_options = "bordered", full_width = FALSE)
+knitr::kable(dd, booktabs = TRUE, caption = "Data Dictionary – Q1")
 ```
 
+## Data Exploration
 
+### Graphical Summaries: Line Plot and Bar graph
 ```{r}
-# Loading and Renaming data sets
-library(tidyverse)
-college<-read.csv("college.1.csv")
-non.college <- read.csv("highschool.csv")
-
-colnames(college) <- c("Month", "UR_College")
-colnames(non.college) <- c("Month", "UR_NonCollege")
-
-# Changing the months column to display month names
-college$Month <- month.name[as.numeric(substr(college$Month, 6,7))]
-non.college$Month <- month.name[as.numeric(substr(non.college$Month, 6,7))]
-
-# Merging data
-unemployment.data <- merge(college, non.college, by="Month")
-unemployment.data$Month <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug",
-                             "Sep", "Oct", "Nov", "Dec")
 
 
 # Line Plot of Unemployment
@@ -98,24 +106,29 @@ ggplot(unemployment.data, aes(x=Month)) +
   theme_minimal()
 
 ```
-## Numerical summaries 
+### Numerical Summary: Five-Number Summary
 
-```{r}
-summary(unemployment.data[,c("UR_College", "UR_NonCollege")])
+```{r, echo=FALSE}
+Summary.data <- summary(unemployment.data[,c("UR_College", "UR_NonCollege")])
+Summary.data
 ```
 
-## Average unemployment by education level
-```{r}
+### Average Unemployment by Education Level
+
+```{r, echo=FALSE}
 avg_college <- mean(unemployment.data$UR_College)
 avg_noncollege <- mean(unemployment.data$UR_NonCollege)
 
-avg_college; avg_noncollege     
+averages <- c(College = avg_college, NonCollege = avg_noncollege)
+averages
 ```
 
 ## Summary of the findings:
 
 In the observed 2024 unemployment data, college graduates experienced higher and more volatile unemployment rates compared to non college workers. The average unemployment rate among college graduates was approximately 6.4% with values ranging from 4.1% to 9.0%. On the other hand, non college workers had a steadier trend averaging around 4.2% with a narrower range between 3.8% to 4.8%. The graph reinforce this pattern which shows the month to month unemployment for college graduates rose sharply at several points (in February and June) while unemployment among non college workers remained relatively stable throughout the year.<br>         
      Contrary to the traditional expectations that higher education ensures better job security, this datasrt implies that labor market conditions in 2024 were less stable for college educated workers which shwos the ongoining structural adjustments in white collar industries following post pandemic realignments. Based on these observations, Question 1: the relationship between educational attainment and unemployment stabiltiy appears most intersting for deeper statistical analysis as it highlights shifting dynamics in how educatoin influences employment outcomes. 
+     
+\newpage
 
 ## Data Appendix
 
@@ -128,6 +141,7 @@ head(unemployment.data, 12)
 
 - U.S. Bureau of Labor Statistics. *Labor Force Statistics from the Current Population Survey.* https://www.bls.gov/cps/  
 - Federal Reserve Bank of St. Louis. *FRED Economic Data.* Series: LNU04027660, CGBD2024. https://fred.stlouisfed.org/  
-- U.S. Census Bureau. *Technical Documentation for the Current Population Survey (CPS).* 
+- U.S. Census Bureau. *Technical Documentation for the Current Population Survey (CPS).*
+
 
 
